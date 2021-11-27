@@ -36,7 +36,11 @@
     "mini-css-extract-plugin": "^2.4.5",
     "sass": "^1.43.5",
     "sass-loader": "^12.3.0",
-    "webpack": "^5.64.0",
-    "webpack-cli": "^4.9.1"
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1"
   }
 }
