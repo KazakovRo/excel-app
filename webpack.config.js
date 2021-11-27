@@ -4,12 +4,20 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+const isProd = process.env.NODE_ENV === 'production'
+const isDev = !isProd
+
+console.log('dev', isDev)
+console.log('prod', isProd)
+
+const fileName = extension => (isDev ? `bundle.${extension}` : `bundle.[hash].${extension}`)
+
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
   entry: './index.js',
   output: {
-    filename: 'bundle.[hash].js',
+    filename: fileName('js'),
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
@@ -22,13 +30,17 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HTMLWebpackPlugin({
-      template: 'index.html'
+      template: 'index.html',
+      minify: {
+        removeComments: isProd,
+        collapseWhitespace: isProd
+      }
     }),
     new CopyPlugin({
       patterns: [{ from: path.resolve(__dirname, 'src/favicon.ico'), to: path.resolve(__dirname, 'dist') }]
     }),
     new MiniCssExtractPlugin({
-      filename: 'bundle.[hash].css'
+      filename: fileName('css')
     })
   ],
   module: {
