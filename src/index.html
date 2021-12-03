@@ -9,76 +9,37 @@
   </head>
   <body>
     <div id="app" class="container">
-      <div class="excel">
-        <div class="excel__header">
-          <input type="text" class="input" value="New table" />
+      <div class="dashboard">
+        <div class="dashboard__header">
+          <h1>Dashboard</h1>
+        </div>
 
-          <div class="buttons-container">
-            <div class="button">
-              <span class="material-icons"> logout </span>
-            </div>
-            <div class="button">
-              <span class="material-icons"> delete_forever </span>
-            </div>
+        <div class="dashboard__new">
+          <div class="dashboard__view">
+            <a href="#" class="dashboard__create">
+              New <br />
+              string
+            </a>
           </div>
         </div>
 
-        <div class="excel__toolbar">
-          <div class="button">
-            <span class="material-icons"> format_align_left </span>
-          </div>
-          <div class="button">
-            <span class="material-icons"> format_align_center </span>
-          </div>
-          <div class="button">
-            <span class="material-icons"> format_align_right </span>
-          </div>
-          <div class="button">
-            <span class="material-icons"> format_bold </span>
-          </div>
-          <div class="button">
-            <span class="material-icons"> format_italic </span>
-          </div>
-          <div class="button">
-            <span class="material-icons"> format_underline </span>
-          </div>
-        </div>
-
-        <div class="excel__formula">
-          <div class="info">fx</div>
-          <div class="input" contenteditable spellcheck="false"></div>
-        </div>
-
-        <div class="excel__table">
-          <div class="row">
-            <div class="row-info"></div>
-
-            <div class="row-data">
-              <div class="column">A</div>
-              <div class="column">B</div>
-              <div class="column">C</div>
-            </div>
+        <div class="dashboard__table dashboard__view">
+          <div class="dashboard__list-header">
+            <span>Name of table</span>
+            <span>Opening date</span>
           </div>
 
-          <div class="row">
-            <div class="row-info">1</div>
+          <ul class="dashboard__list">
+            <li class="dashboard__record">
+              <a href="#">Table #1</a>
+              <strong>03.12.2021</strong>
+            </li>
 
-            <div class="row-data">
-              <div class="cell selected" contenteditable>123213</div>
-              <div class="cell" contenteditable>123132132123</div>
-              <div class="cell" contenteditable>222</div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="row-info">2</div>
-
-            <div class="row-data">
-              <div class="cell">123213</div>
-              <div class="cell">123132132123</div>
-              <div class="cell">222</div>
-            </div>
-          </div>
+            <li class="dashboard__record">
+              <a href="#">Table #2</a>
+              <strong>03.12.2021</strong>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
