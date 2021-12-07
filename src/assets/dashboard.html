@@ -8,6 +8,40 @@
     <title>Excel app</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app" class="container">
+      <div class="dashboard">
+        <div class="dashboard__header">
+          <h1>Dashboard</h1>
+        </div>
+
+        <div class="dashboard__new">
+          <div class="dashboard__view">
+            <a href="#" class="dashboard__create">
+              New <br />
+              string
+            </a>
+          </div>
+        </div>
+
+        <div class="dashboard__table dashboard__view">
+          <div class="dashboard__list-header">
+            <span>Name of table</span>
+            <span>Opening date</span>
+          </div>
+
+          <ul class="dashboard__list">
+            <li class="dashboard__record">
+              <a href="#">Table #1</a>
+              <strong>03.12.2021</strong>
+            </li>
+
+            <li class="dashboard__record">
+              <a href="#">Table #2</a>
+              <strong>03.12.2021</strong>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
