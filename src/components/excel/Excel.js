@@ -1,3 +1,5 @@
+import { library } from '../../core/dom'
+
 export class Excel {
   constructor(selector, options) {
     this.$el = document.querySelector(selector)
@@ -5,13 +7,14 @@ export class Excel {
   }
 
   getRoot() {
-    const $root = document.createElement('div')
-    $root.classList.add('excel')
+    const $root = library.create('div', 'excel')
 
     this.components.forEach(Component => {
-      const component = new Component()
+      const $el = library.create('div', Component.className)
 
-      $root.insertAdjacentHTML('beforeend', component.toHTML())
+      const component = new Component($el)
+      $el.innerHTML = component.toHTML()
+      $root.append($el)
     })
 
     return $root
