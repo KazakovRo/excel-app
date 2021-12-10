@@ -2,7 +2,7 @@ import { library } from '../../core/dom'
 
 export class Excel {
   constructor(selector, options) {
-    this.$el = document.querySelector(selector)
+    this.$el = library(selector)
     this.components = options.components || []
   }
 
