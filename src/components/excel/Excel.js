@@ -13,7 +13,7 @@ export class Excel {
       const $el = library.create('div', Component.className)
 
       const component = new Component($el)
-      $el.innerHTML = component.toHTML()
+      $el.html(component.toHTML()) // $el.innerHTML = component.toHTML()
       $root.append($el)
     })
 
