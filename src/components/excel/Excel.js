@@ -13,6 +13,11 @@ export class Excel {
       const $el = library.create('div', Component.className)
 
       const component = new Component($el)
+      // DEBUG
+      if (component.name) {
+        window['c' + component.name] = component
+      }
+
       $el.html(component.toHTML()) // $el.innerHTML = component.toHTML()
       $root.append($el)
       return component

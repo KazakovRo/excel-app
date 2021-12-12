@@ -19,11 +19,18 @@ export class DomListener {
         throw new Error(`Method ${method} is undefined in ${name} Component`)
       }
 
-      this.$root.on(listener, this[method].bind(this)) // on() === addEventListener()
+      // Changed [this] context so that the same [method] is sent to functions on() and off()
+      this[method] = this[method].bind(this)
+      this.$root.on(listener, this[method]) // on() === addEventListener()
     })
   }
 
-  removeDOMListeners() {}
+  removeDOMListeners() {
+    this.listeners.forEach(listener => {
+      const method = getMethodName(listener)
+      this.$root.off(listener, this[method])
+    })
+  }
 }
 
 function getMethodName(eventName) {
