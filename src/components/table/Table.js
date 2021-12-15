@@ -1,4 +1,5 @@
 import { ExcelComponent } from '@core/ExcelComponent'
+import { library } from '@core/dom.js'
 import { createTable } from './table.template'
 
 export class Table extends ExcelComponent {
@@ -6,30 +7,29 @@ export class Table extends ExcelComponent {
 
   constructor($root) {
     super($root, {
-      // listeners: ['click', 'mousedown', 'mousemove', 'mouseup']
       listeners: ['mousedown']
     })
   }
 
-  // onClick() {
-  //   console.log('click')
-  // }
-
   onMousedown(e) {
-    // console.log('mouse down', e.target)
     if (e.target.dataset.resize) {
-      console.log('Start resizing', e.target.dataset.resize)
+      // console.log('Start resizing', e.target.dataset.resize)
+      const $targetResize = library(e.target)
+      // add $el before closest and use native closest method
+      const $parentCell = $targetResize.closest('[data-type="resizable"]')
+      const coords = $parentCell.getCoords()
+
+      document.onmousemove = e => {
+        const delta = e.pageX - coords.right
+        const value = coords.width + delta
+        $parentCell.$el.style.width = value + 'px'
+      }
+
+      document.onmouseup = () => {
+        document.onmousemove = null
+      }
     }
-    // console.log(e.target.getAttribute('data-resize'))
   }
-
-  // onMousemove() {
-  //   console.log('mouse mowe')
-  // }
-
-  // onMouseup() {
-  //   console.log('mouse up')
-  // }
 
   toHTML() {
     return createTable(20)

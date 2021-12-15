@@ -38,6 +38,15 @@ class Dom {
 
     return this
   }
+
+  closest(selector) {
+    console.log('reAssign closest method')
+    return library(this.$el.closest(selector))
+  }
+
+  getCoords() {
+    return this.$el.getBoundingClientRect()
+  }
 }
 
 export function library(selector) {
