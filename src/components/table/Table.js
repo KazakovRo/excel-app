@@ -32,7 +32,7 @@ export class Table extends ExcelComponent {
         const value = isColumn ? coords.width + delta : coords.height + delta
         const styleSize = isColumn ? 'width' : 'height'
 
-        $parentCell.$el.style[styleSize] = value + 'px'
+        $parentCell.css({ [styleSize]: value + 'px' }) // $parentCell.$el.style[styleSize] = value + 'px'
 
         dataCells.forEach(el => (el.style.width = value + 'px'))
       }
