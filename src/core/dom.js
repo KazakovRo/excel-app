@@ -40,12 +40,21 @@ class Dom {
   }
 
   closest(selector) {
-    console.log('reAssign closest method')
+    console.log('new closest method')
     return library(this.$el.closest(selector))
   }
 
   getCoords() {
     return this.$el.getBoundingClientRect()
+  }
+
+  get data() {
+    console.log('new dataset method')
+    return this.$el.dataset
+  }
+
+  findAll(selector) {
+    return this.$el.querySelectorAll(selector)
   }
 }
 

@@ -12,14 +12,18 @@ export class Table extends ExcelComponent {
   }
 
   onMousedown(e) {
-    if (e.target.dataset.resize) {
+    const tableItem = e.target.dataset.resize
+
+    if (tableItem) {
       // console.log('Start resizing', e.target.dataset.resize)
       const $targetResize = library(e.target)
       // add $el before closest and use native closest method
       const $parentCell = $targetResize.closest('[data-type="resizable"]')
       const coords = $parentCell.getCoords()
+      const dataCells = this.$root.findAll(`[data-col="${$parentCell.data.col}"]`)
 
-      const tableItem = e.target.dataset.resize
+      // .data it's getter function
+      // console.log($parentCell.data.col)
 
       document.onmousemove = e => {
         const isColumn = tableItem === 'col'
@@ -29,6 +33,8 @@ export class Table extends ExcelComponent {
         const styleSize = isColumn ? 'width' : 'height'
 
         $parentCell.$el.style[styleSize] = value + 'px'
+
+        dataCells.forEach(el => (el.style.width = value + 'px'))
       }
 
       document.onmouseup = () => {
