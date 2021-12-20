@@ -6,6 +6,7 @@ class Dom {
   html(html) {
     if (typeof html === 'string') {
       this.$el.innerHTML = html
+      return this
     }
 
     return this.$el.outerHTML.trim()
@@ -36,6 +37,31 @@ class Dom {
     }
 
     return this
+  }
+
+  closest(selector) {
+    console.log('new closest method')
+    return library(this.$el.closest(selector))
+  }
+
+  getCoords() {
+    return this.$el.getBoundingClientRect()
+  }
+
+  get data() {
+    console.log('new dataset method')
+    return this.$el.dataset
+  }
+
+  findAll(selector) {
+    return this.$el.querySelectorAll(selector)
+  }
+
+  css(changeStyles = {}) {
+    console.log('css method')
+    Object.keys(changeStyles).forEach(key => {
+      this.$el.style[key] = changeStyles[key]
+    })
   }
 }
 
