@@ -3,14 +3,14 @@ import { library } from '@core/dom'
 import { createTable } from './table.template'
 import { resizeHandler } from './table.resize'
 import { TableSelection } from './TableSelection'
-import { isCell, multiSelect } from './table.functions'
+import { isCell, multiSelect, nextSelector } from './table.functions'
 
 export class Table extends ExcelComponent {
   static className = 'excel__table'
 
   constructor($root) {
     super($root, {
-      listeners: ['mousedown']
+      listeners: ['mousedown', 'keydown']
     })
   }
 
@@ -33,6 +33,19 @@ export class Table extends ExcelComponent {
         // one cell
         this.selection.select($target)
       }
+    }
+  }
+
+  onKeydown(e) {
+    const keys = ['Enter', 'Tab', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp']
+    const { key } = e
+
+    if (keys.includes(key) && !e.shiftKey) {
+      e.preventDefault()
+
+      const id = this.selection.current.id(true)
+      const $next = this.$root.find(nextSelector(key, id))
+      this.selection.select($next)
     }
   }
 

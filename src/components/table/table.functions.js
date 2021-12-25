@@ -37,3 +37,29 @@ export function multiSelect($targetCell, $currentCell) {
   // const $cells = collsAndRowsGroup.map(id => this.$root.find(`[data-id="${id}"]`))
   // this.selection.selectGroup($cells)
 }
+
+export function nextSelector(key, { col, row }) {
+  const MIN_VALUE = 0
+
+  switch (key) {
+    case 'Enter':
+    case 'ArrowDown':
+      row++
+      break
+
+    case 'Tab':
+    case 'ArrowRight':
+      col++
+      break
+
+    case 'ArrowLeft':
+      col = col - 1 < MIN_VALUE ? MIN_VALUE : col - 1 // col--
+      break
+    case 'ArrowUp':
+      // if row < 0 then our cell equal min_value --> another way is row - 1 its our new cell
+      row = row - 1 < MIN_VALUE ? MIN_VALUE : row - 1 // row--
+      break
+  }
+
+  return `[data-id="${row}:${col}"]`
+}
