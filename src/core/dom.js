@@ -69,6 +69,19 @@ class Dom {
     return this.$el.classList.remove(className)
   }
 
+  id(parse) {
+    if (parse) {
+      const parsed = this.id().split(':')
+
+      return {
+        row: +parsed[0],
+        col: +parsed[1]
+      }
+    }
+
+    return this.data.id
+  }
+
   css(changeStyles = {}) {
     console.log('css method')
     Object.keys(changeStyles).forEach(key => {
