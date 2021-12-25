@@ -5,9 +5,17 @@ const CODES = {
 
 function createCell(row, col) {
   return `
-    <div class="cell" contenteditable data-row="${row}" data-col="${col}"></div>
+    <div class="cell" contenteditable data-id="${row}:${col}" data-col="${col}" data-type="cell"></div>
   `
 }
+
+// function createCell(row) {
+//   return function (_, col) {
+//     return `
+//     <div class="cell" contenteditable data-row="${row}" data-col="${col}"></div>
+//     `
+//   }
+// }
 
 function createCol(col, index) {
   return `
@@ -47,7 +55,7 @@ export function createTable(rowsCount = 15) {
   for (let row = 0; row < rowsCount; row++) {
     const cells = new Array(colsCount)
       .fill('')
-      .map((_, col) => createCell(row, col))
+      .map((_, col) => createCell(row, col)) // .map(createCell(row))
       .join('')
 
     rows.push(createRow(row + 1, cells))
