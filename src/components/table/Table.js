@@ -1,10 +1,9 @@
 import { ExcelComponent } from '@core/ExcelComponent'
 import { library } from '@core/dom'
-import { range } from '@core/utils'
 import { createTable } from './table.template'
 import { resizeHandler } from './table.resize'
 import { TableSelection } from './TableSelection'
-import { isCell } from './table.functions'
+import { isCell, multiSelect } from './table.functions'
 
 export class Table extends ExcelComponent {
   static className = 'excel__table'
@@ -28,19 +27,7 @@ export class Table extends ExcelComponent {
       // blue select cell
       if (e.shiftKey) {
         // group cells
-        const targetCell = $target.id(true)
-        const currentCell = this.selection.current.id(true)
-
-        const cols = range(currentCell.col, targetCell.col)
-        const rows = range(currentCell.row, targetCell.row)
-
-        // range of cells group
-        const collsAndRowsGroup = cols.reduce((acc, col) => {
-          rows.forEach(row => acc.push(`${row}:${col}`))
-          return acc
-        }, [])
-
-        const $cells = collsAndRowsGroup.map(id => this.$root.find(`[data-id="${id}"]`))
+        const $cells = multiSelect($target, this.selection.current).map(id => this.$root.find(`[data-id="${id}"]`))
         this.selection.selectGroup($cells)
       } else {
         // one cell
