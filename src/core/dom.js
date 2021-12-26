@@ -87,6 +87,10 @@ class Dom {
     return this
   }
 
+  text(text) {
+    this.$el.textContent = text
+  }
+
   css(changeStyles = {}) {
     console.log('css method')
     Object.keys(changeStyles).forEach(key => {
