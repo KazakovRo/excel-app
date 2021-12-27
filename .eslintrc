@@ -12,7 +12,9 @@
     "max-len": "off",
     "comma-dangle": "off",
     "require-jsdoc": "off",
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    "indent": "off",
+    "space-before-function-paren": "off"
   },
   "extends": ["eslint:recommended", "google"]
 }
