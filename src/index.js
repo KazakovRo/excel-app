@@ -11,7 +11,7 @@ import { rootReducer } from '@/redux/rootReducer'
 import './scss/index.scss'
 
 const store = createStore(rootReducer, {
-  tableTitle: 'My Table 1'
+  colState: {}
 })
 
 const excel = new Excel('#app', {

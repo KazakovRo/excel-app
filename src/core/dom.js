@@ -40,7 +40,7 @@ class Dom {
   }
 
   closest(selector) {
-    console.log('new closest method')
+    // console.log('new closest method')
     return library(this.$el.closest(selector))
   }
 
@@ -49,7 +49,7 @@ class Dom {
   }
 
   get data() {
-    console.log('new dataset method')
+    // console.log('new dataset method')
     return this.$el.dataset
   }
 
@@ -103,7 +103,7 @@ class Dom {
   }
 
   css(changeStyles = {}) {
-    console.log('css method')
+    // console.log('css method')
     Object.keys(changeStyles).forEach(key => {
       this.$el.style[key] = changeStyles[key]
     })

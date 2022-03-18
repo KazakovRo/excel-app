@@ -32,6 +32,7 @@ export class Table extends ExcelComponent {
       this.selection.current.focus()
     })
 
+    // реагируем на изменения стейта
     this.$subscribe(state => {
       console.log('tableState', state)
     })
@@ -40,7 +41,16 @@ export class Table extends ExcelComponent {
   selectCell($cell) {
     this.selection.select($cell)
     this.$emit('table:select', $cell)
-    this.$dispatch({ type: 'TEST' })
+    // this.$dispatch({ type: 'TEST' })
+  }
+
+  async resizeTable(e, tableItem) {
+    try {
+      const columnResizeData = await resizeHandler(this.$root, e, tableItem)
+      this.$dispatch({ type: 'TABLE_RESIZE', columnResizeData })
+    } catch (e) {
+      console.warn('Resize error', e.message)
+    }
   }
 
   onMousedown(e) {
@@ -49,7 +59,7 @@ export class Table extends ExcelComponent {
 
     // shouldResize(e) --> equals -->  tableItem
     if (tableItem) {
-      resizeHandler(this.$root, e, tableItem)
+      this.resizeTable(e, tableItem)
     } else if (isCell(tableCell)) {
       const $target = library(e.target)
 
