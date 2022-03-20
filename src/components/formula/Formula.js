@@ -26,9 +26,9 @@ export class Formula extends ExcelComponent {
     })
 
     // реагируем на изменения стейта
-    this.$subscribe(state => {
-      console.log('formulaState', state)
-    })
+    // this.$subscribe(state => {
+    //   console.log('formulaState', state)
+    // })
   }
 
   onInput(e) {
